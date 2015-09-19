@@ -15,12 +15,14 @@ class ViewController: UIViewController {
         
         let attributes = MarkdownAttributes()
         let textStorage = MarkdownTextStorage(attributes: attributes)
-        var error: NSError?
-        if let linkHighlighter = LinkHighlighter(errorPtr: &error) {
-            textStorage.addHighlighter(linkHighlighter)
-        } else {
-            assertionFailure("Error initializing LinkHighlighter: \(error)")
+        
+        var linkHighlighter: LinkHighlighter
+        do {
+            linkHighlighter = try LinkHighlighter()
+        } catch {
+            assertionFailure("Error initializing LinkHighlighter")
         }
+        
         textStorage.addHighlighter(MarkdownStrikethroughHighlighter())
         textStorage.addHighlighter(MarkdownSuperscriptHighlighter())
         if let codeBlockAttributes = attributes.codeBlockAttributes {
@@ -28,12 +30,12 @@ class ViewController: UIViewController {
         }
         
         let textView = MarkdownTextView(frame: CGRectZero, textStorage: textStorage)
-        textView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        textView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(textView)
         
         let views = ["textView": textView]
-        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[textView]-20-|", options: nil, metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[textView]-20-|", options: nil, metrics: nil, views: views)
+        var constraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[textView]-20-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[textView]-20-|", options: [], metrics: nil, views: views)
         NSLayoutConstraint.activateConstraints(constraints)
     }
 }

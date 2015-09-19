@@ -36,7 +36,7 @@ public final class MarkdownSuperscriptHighlighter: HighlighterType {
         enumerateMatches(self.dynamicType.SuperscriptRegex, string: attributedString.string) {
             level += $0.rangeAtIndex(1).length
             let textRange = $0.range
-            let attributes = attributedString.attributesAtIndex(textRange.location, effectiveRange: nil) as! TextAttributes
+            let attributes = attributedString.attributesAtIndex(textRange.location, effectiveRange: nil)
             
             let isConsecutiveRange: Bool = {
                 if let previousRange = previousRange where NSMaxRange(previousRange) == textRange.location {
@@ -48,7 +48,7 @@ public final class MarkdownSuperscriptHighlighter: HighlighterType {
                 level++
             }
             
-            attributedString.addAttributes(superscriptAttributes(attributes, level, self.fontSizeRatio), range: textRange)
+            attributedString.addAttributes(superscriptAttributes(attributes, level: level, ratio: self.fontSizeRatio), range: textRange)
             previousRange = textRange
             
             if !isConsecutiveRange {
