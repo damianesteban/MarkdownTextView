@@ -18,10 +18,10 @@ public final class MarkdownSuperscriptHighlighter: HighlighterType {
     /**
     Creates a new instance of the receiver.
     
-    :param: fontSizeRatio Ratio to multiply the original font
+    - parameter fontSizeRatio: Ratio to multiply the original font
     size by to calculate the superscript font size.
     
-    :returns: An initialized instance of the receiver.
+    - returns: An initialized instance of the receiver.
     */
     public init(fontSizeRatio: CGFloat = 0.7) {
         self.fontSizeRatio = fontSizeRatio
@@ -33,7 +33,7 @@ public final class MarkdownSuperscriptHighlighter: HighlighterType {
         var previousRange: NSRange?
         var level: Int = 0
         
-        enumerateMatches(self.dynamicType.SuperscriptRegex, attributedString.string) {
+        enumerateMatches(self.dynamicType.SuperscriptRegex, string: attributedString.string) {
             level += $0.rangeAtIndex(1).length
             let textRange = $0.range
             let attributes = attributedString.attributesAtIndex(textRange.location, effectiveRange: nil) as! TextAttributes

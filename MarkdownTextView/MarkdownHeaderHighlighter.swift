@@ -19,9 +19,9 @@ public final class MarkdownHeaderHighlighter: HighlighterType {
     /**
     Creates a new instance of the receiver.
     
-    :param: attributes Attributes to apply to Markdown headers.
+    - parameter attributes: Attributes to apply to Markdown headers.
     
-    :returns: An initialized instance of the receiver.
+    - returns: An initialized instance of the receiver.
     */
     public init(attributes: MarkdownAttributes.HeaderAttributes) {
         self.attributes = attributes
@@ -30,7 +30,7 @@ public final class MarkdownHeaderHighlighter: HighlighterType {
     // MARK: HighlighterType
     
     public func highlightAttributedString(attributedString: NSMutableAttributedString) {
-        enumerateMatches(self.dynamicType.HeaderRegex, attributedString.string) {
+        enumerateMatches(self.dynamicType.HeaderRegex, string: attributedString.string) {
             let level = $0.rangeAtIndex(1).length
             if let attributes = self.attributes.attributesForHeaderLevel(level) {
                 attributedString.addAttributes(attributes, range: $0.range)

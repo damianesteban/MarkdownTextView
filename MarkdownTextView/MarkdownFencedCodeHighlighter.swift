@@ -21,9 +21,9 @@ public final class MarkdownFencedCodeHighlighter: RegularExpressionHighlighter {
     /**
     Creates a new instance of the receiver.
     
-    :param: attributes Attributes to apply to fenced code blocks.
+    - parameter attributes: Attributes to apply to fenced code blocks.
     
-    :returns: A new instance of the receiver.
+    - returns: A new instance of the receiver.
     */
     public init(attributes: TextAttributes) {
         super.init(regularExpression: self.dynamicType.FencedCodeRegex, attributes: attributes)

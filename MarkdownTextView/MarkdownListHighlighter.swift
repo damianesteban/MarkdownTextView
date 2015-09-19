@@ -19,13 +19,13 @@ public final class MarkdownListHighlighter: HighlighterType {
     /**
     Creates a new instance of the receiver.
     
-    :param: markerPattern  Regular expression pattern to use for matching
+    - parameter markerPattern:  Regular expression pattern to use for matching
     list markers.
-    :param: attributes     Attributes to apply to the entire list.
-    :param: itemAttributes Attributes to apply to list items (excluding
+    - parameter attributes:     Attributes to apply to the entire list.
+    - parameter itemAttributes: Attributes to apply to list items (excluding
     list markers)
     
-    :returns: An initialized instance of the receiver.
+    - returns: An initialized instance of the receiver.
     */
     public init(markerPattern: String, attributes: TextAttributes?, itemAttributes: TextAttributes?) {
         self.regularExpression = listItemRegexWithMarkerPattern(markerPattern)
@@ -38,7 +38,7 @@ public final class MarkdownListHighlighter: HighlighterType {
     public func highlightAttributedString(attributedString: NSMutableAttributedString) {
         if (attributes == nil && itemAttributes == nil) { return }
         
-        enumerateMatches(regularExpression, attributedString.string) {
+        enumerateMatches(regularExpression, string: attributedString.string) {
             if let attributes = self.attributes {
                 attributedString.addAttributes(attributes, range: $0.range)
             }

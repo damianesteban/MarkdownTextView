@@ -18,10 +18,10 @@ public final class MarkdownStrikethroughHighlighter: HighlighterType {
     /**
     Creates a new instance of the receiver.
     
-    :param: attributes Optional additional attributes to apply
+    - parameter attributes: Optional additional attributes to apply
     to strikethrough text.
     
-    :returns: An initialized instance of the receiver.
+    - returns: An initialized instance of the receiver.
     */
     public init(attributes: TextAttributes? = nil) {
         self.attributes = attributes
@@ -30,7 +30,7 @@ public final class MarkdownStrikethroughHighlighter: HighlighterType {
     // MARK: HighlighterType
     
     public func highlightAttributedString(attributedString: NSMutableAttributedString) {
-        enumerateMatches(self.dynamicType.StrikethroughRegex, attributedString.string) {
+        enumerateMatches(self.dynamicType.StrikethroughRegex, string: attributedString.string) {
             var strikethroughAttributes: TextAttributes = [
                 NSStrikethroughStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue
             ]

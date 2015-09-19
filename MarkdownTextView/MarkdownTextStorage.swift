@@ -19,9 +19,9 @@ public class MarkdownTextStorage: HighlighterTextStorage {
     /**
     Creates a new instance of the receiver.
     
-    :param: attributes Attributes used to style the text.
+    - parameter attributes: Attributes used to style the text.
     
-    :returns: An initialized instance of `MarkdownTextStorage`
+    - returns: An initialized instance of `MarkdownTextStorage`
     */
     public init(attributes: MarkdownAttributes = MarkdownAttributes()) {
         self.attributes = attributes
@@ -60,7 +60,7 @@ public class MarkdownTextStorage: HighlighterTextStorage {
         addPattern("(`+)(?:.+?)(?<!`)\\1(?!`)", attributes.inlineCodeAttributes)
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         attributes = MarkdownAttributes()
         super.init(coder: aDecoder)
         commonInit()
@@ -82,7 +82,7 @@ public class MarkdownTextStorage: HighlighterTextStorage {
     private func attributesForTraits(traits: UIFontDescriptorSymbolicTraits, var _ attributes: TextAttributes?) -> TextAttributes? {
         if let defaultFont = defaultAttributes[NSFontAttributeName] as? UIFont where attributes == nil {
             attributes = [
-                NSFontAttributeName: fontWithTraits(traits, defaultFont)
+                NSFontAttributeName: fontWithTraits(traits, font: defaultFont)
             ]
         }
         return attributes

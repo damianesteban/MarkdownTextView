@@ -19,12 +19,12 @@ public class RegularExpressionHighlighter: HighlighterType {
     /**
     Creates a new instance of the receiver.
     
-    :param: regularExpression The regular expression to use for
+    - parameter regularExpression: The regular expression to use for
     matching text to highlight.
-    :param: attributes        The attributes applied to matching
+    - parameter attributes:        The attributes applied to matching
     text ranges.
     
-    :returns: An initialized instance of the receiver.
+    - returns: An initialized instance of the receiver.
     */
     public init(regularExpression: NSRegularExpression, attributes: TextAttributes) {
         self.regularExpression = regularExpression
@@ -34,7 +34,7 @@ public class RegularExpressionHighlighter: HighlighterType {
     // MARK: HighlighterType
     
     public func highlightAttributedString(attributedString: NSMutableAttributedString) {
-        enumerateMatches(regularExpression, attributedString.string) {
+        enumerateMatches(regularExpression, string: attributedString.string) {
             attributedString.addAttributes(self.attributes, range: $0.range)
         }
     }

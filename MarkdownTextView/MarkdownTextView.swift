@@ -15,12 +15,12 @@ public class MarkdownTextView: UITextView {
     /**
     Creates a new instance of the receiver.
     
-    :param: frame       The view frame.
-    :param: textStorage The text storage. This can be customized by the
+    - parameter frame:       The view frame.
+    - parameter textStorage: The text storage. This can be customized by the
     caller to customize text attributes and add additional highlighters
     if the defaults are not suitable.
     
-    :returns: An initialized instance of the receiver.
+    - returns: An initialized instance of the receiver.
     */
     public init(frame: CGRect, textStorage: MarkdownTextStorage = MarkdownTextStorage()) {
         let textContainer = NSTextContainer()
@@ -31,7 +31,7 @@ public class MarkdownTextView: UITextView {
         super.init(frame: frame, textContainer: textContainer)
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
